@@ -1,7 +1,12 @@
 package com.adrian971029.estruturadados.model;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "processos_table")
 public class Processo {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String nomeProcesso;
     private long tempoExecucao;
     private int processoId;
@@ -40,6 +45,14 @@ public class Processo {
         this.heap = heap;
         this.heap.insert(this);
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeProcesso() {
