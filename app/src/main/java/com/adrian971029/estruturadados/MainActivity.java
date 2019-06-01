@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_add_processos)
     void onActionAddButtonProcessos() {
+        Intent intent = new Intent(this, AddProcessoActivity.class);
+        startActivity(intent);
     }
 
 }
