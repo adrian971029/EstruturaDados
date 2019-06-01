@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">EstruturaDados</string>
     <string name="lbl_id">Id:</string>
+    <string name="lbl_nome_do_processo">Nome do Processo</string>
+    <string name="lbl_pequeno">Pequeno</string>
+    <string name="lbl_medio">Medio</string>
+    <string name="lbl_grande">Grande</string>
+    <string name="lbl_cancelar">Cancelar</string>
+    <string name="lbl_criar">Criar</string>
+    <string name="lbl_tamanho_do_arquivo_a_processar">Tamanho do Arquivo a Processar:</string>
 </resources>
