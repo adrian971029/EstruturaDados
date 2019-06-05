@@ -1,5 +1,6 @@
 package com.adrian971029.estruturadados.model;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "processos_table")
@@ -10,14 +11,28 @@ public class Processo {
     private String nomeProcesso;
     private long tempoExecucao;
     private int processoId;
+    @Ignore
     private RedBlackTree redBlackTree;
     private long tempoCPU;
     private long tempoEspera;
     private long tempoChegada;
+    @Ignore
     private ImplementacaoHeap heap;
     private long tempoResposta;
     private long injustica;
 
+    public Processo(String nomeProcesso, long tempoExecucao, int processoId, long tempoCPU, long tempoEspera, long tempoChegada, long tempoResposta, long injustica) {
+        this.nomeProcesso = nomeProcesso;
+        this.tempoExecucao = tempoExecucao;
+        this.processoId = processoId;
+        this.tempoCPU = tempoCPU;
+        this.tempoEspera = tempoEspera;
+        this.tempoChegada = tempoChegada;
+        this.tempoResposta = tempoResposta;
+        this.injustica = injustica;
+    }
+
+    @Ignore
     public Processo(RedBlackTree redBlackTree, int novoId, long novoTempoChegada, long novoTempoExecucao) {
 
         tempoCPU = 0;
@@ -31,6 +46,7 @@ public class Processo {
 
     }
 
+    @Ignore
     public Processo(ImplementacaoHeap heap, int novoId, long novoTempoChegada, long novoTempoExecucao) {
 
         tempoCPU = 0;
