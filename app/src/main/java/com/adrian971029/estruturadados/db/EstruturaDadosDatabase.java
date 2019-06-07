@@ -10,9 +10,9 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.adrian971029.estruturadados.db.dao.ProcessoDao;
-import com.adrian971029.estruturadados.model.Processo;
+import com.adrian971029.estruturadados.db.dto.DtoProcesso;
 
-@Database(entities = {Processo.class}, version = 1)
+@Database(entities = {DtoProcesso.class}, version = 1)
 public abstract class EstruturaDadosDatabase extends RoomDatabase {
 
     private static EstruturaDadosDatabase instance;

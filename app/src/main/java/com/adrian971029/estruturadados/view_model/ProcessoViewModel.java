@@ -8,13 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.adrian971029.estruturadados.model.Processo;
+import com.adrian971029.estruturadados.db.dto.DtoProcesso;
 import com.adrian971029.estruturadados.repository.ProcessosRepository;
 
 public class ProcessoViewModel extends AndroidViewModel {
 
     private ProcessosRepository repository;
-    private LiveData<List<Processo>> allProcessos;
+    private LiveData<List<DtoProcesso>> allProcessos;
 
     public ProcessoViewModel(@NonNull Application application) {
         super(application);
@@ -22,15 +22,15 @@ public class ProcessoViewModel extends AndroidViewModel {
         allProcessos = repository.getAllProcessos();
     }
 
-    public void insert(Processo processo) {
+    public void insert(DtoProcesso processo) {
         repository.insert(processo);
     }
 
-    public void update(Processo processo) {
+    public void update(DtoProcesso processo) {
         repository.update(processo);
     }
 
-    public void delete(Processo processo) {
+    public void delete(DtoProcesso processo) {
         repository.delete(processo);
     }
 
@@ -38,7 +38,7 @@ public class ProcessoViewModel extends AndroidViewModel {
         repository.deleteAllProcessos();
     }
 
-    public LiveData<List<Processo>> getAllNotes() {
+    public LiveData<List<DtoProcesso>> getAllNotes() {
         return allProcessos;
     }
 

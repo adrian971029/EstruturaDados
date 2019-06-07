@@ -9,24 +9,24 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.adrian971029.estruturadados.model.Processo;
+import com.adrian971029.estruturadados.db.dto.DtoProcesso;
 
 @Dao
 public interface ProcessoDao {
 
     @Insert
-    void insert(Processo processo);
+    void insert(DtoProcesso processo);
 
     @Update
-    void update(Processo processo);
+    void update(DtoProcesso processo);
 
     @Delete
-    void delete(Processo processo);
+    void delete(DtoProcesso processo);
 
     @Query("DELETE FROM processos_table")
     void deleteAllProcessos();
 
-    @Query("SELECT * FROM processos_table ORDER BY tempoExecucao DESC")
-    LiveData<List<Processo>> getAllProcessos();
+    @Query("SELECT * FROM processos_table ORDER BY id DESC")
+    LiveData<List<DtoProcesso>> getAllProcessos();
 
 }

@@ -5,20 +5,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.adrian971029.estruturadados.R;
-import com.adrian971029.estruturadados.model.Processo;
+import com.adrian971029.estruturadados.db.dto.DtoProcesso;
 
 import butterknife.ButterKnife;
 
-public class ProcessoAdapter extends ListAdapter<Processo, ProcessoAdapter.ProcessoHolder> {
+public class ProcessoAdapter extends ListAdapter<DtoProcesso, ProcessoAdapter.ProcessoHolder> {
 
     private OnItemClickListener listener;
 
@@ -26,14 +23,14 @@ public class ProcessoAdapter extends ListAdapter<Processo, ProcessoAdapter.Proce
         super(DIFF_CALLBACK);
     }
 
-    private static final DiffUtil.ItemCallback<Processo> DIFF_CALLBACK = new DiffUtil.ItemCallback<Processo>() {
+    private static final DiffUtil.ItemCallback<DtoProcesso> DIFF_CALLBACK = new DiffUtil.ItemCallback<DtoProcesso>() {
         @Override
-        public boolean areItemsTheSame(@NonNull Processo oldItem, @NonNull Processo newItem) {
+        public boolean areItemsTheSame(@NonNull DtoProcesso oldItem, @NonNull DtoProcesso newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull Processo oldItem, @NonNull Processo newItem) {
+        public boolean areContentsTheSame(@NonNull DtoProcesso oldItem, @NonNull DtoProcesso newItem) {
             return oldItem.getNomeProcesso().equals(newItem.getNomeProcesso()) &&
                     oldItem.getId() == newItem.getId();
         }
@@ -44,18 +41,18 @@ public class ProcessoAdapter extends ListAdapter<Processo, ProcessoAdapter.Proce
     public ProcessoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_processos, parent, false);
-        ProcessoHolder noteHolder = new ProcessoHolder(itemView);
-        return noteHolder;
+        ProcessoHolder processoHolder = new ProcessoHolder(itemView);
+        return processoHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProcessoHolder holder, int position) {
-        Processo processoAtual = getItem(position);
+        DtoProcesso processoAtual = getItem(position);
         holder.tvNomeProcesso.setText(processoAtual.getNomeProcesso());
         holder.tvIdProcesso.append(" " + processoAtual.getId());
     }
 
-    public Processo getProcessoAt(int position) {
+    public DtoProcesso getProcessoAt(int position) {
         return getItem(position);
     }
 
@@ -79,7 +76,7 @@ public class ProcessoAdapter extends ListAdapter<Processo, ProcessoAdapter.Proce
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Processo processo);
+        void onItemClick(DtoProcesso processo);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

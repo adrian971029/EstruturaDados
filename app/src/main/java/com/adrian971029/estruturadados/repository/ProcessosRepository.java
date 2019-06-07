@@ -9,12 +9,12 @@ import androidx.lifecycle.LiveData;
 
 import com.adrian971029.estruturadados.db.EstruturaDadosDatabase;
 import com.adrian971029.estruturadados.db.dao.ProcessoDao;
-import com.adrian971029.estruturadados.model.Processo;
+import com.adrian971029.estruturadados.db.dto.DtoProcesso;
 
 public class ProcessosRepository {
 
     private ProcessoDao processoDao;
-    private LiveData<List<Processo>> allNotes;
+    private LiveData<List<DtoProcesso>> allNotes;
 
     public ProcessosRepository(Application application) {
         EstruturaDadosDatabase database = EstruturaDadosDatabase.getInstance(application);
@@ -22,15 +22,15 @@ public class ProcessosRepository {
         allNotes = processoDao.getAllProcessos();
     }
 
-    public void insert(Processo processo) {
+    public void insert(DtoProcesso processo) {
         new InsertProcessoAsyncTask(processoDao).execute(processo);
     }
 
-    public void update(Processo processo) {
+    public void update(DtoProcesso processo) {
         new UpdateProcessoAsyncTask(processoDao).execute(processo);
     }
 
-    public void delete(Processo processo) {
+    public void delete(DtoProcesso processo) {
         new DeleteProcessoAsyncTask(processoDao).execute(processo);
     }
 
@@ -38,11 +38,11 @@ public class ProcessosRepository {
         new DeleteAllProcessosAsyncTask(processoDao).execute();
     }
 
-    public LiveData<List<Processo>> getAllProcessos() {
+    public LiveData<List<DtoProcesso>> getAllProcessos() {
         return allNotes;
     }
 
-    private static class InsertProcessoAsyncTask extends AsyncTask<Processo, Void, Void> {
+    private static class InsertProcessoAsyncTask extends AsyncTask<DtoProcesso, Void, Void> {
         private ProcessoDao processoDao1;
 
         private InsertProcessoAsyncTask(ProcessoDao processoDao) {
@@ -50,13 +50,13 @@ public class ProcessosRepository {
         }
 
         @Override
-        protected Void doInBackground(Processo... processos) {
+        protected Void doInBackground(DtoProcesso... processos) {
             processoDao1.insert(processos[0]);
             return null;
         }
     }
 
-    private static class UpdateProcessoAsyncTask extends AsyncTask<Processo, Void, Void> {
+    private static class UpdateProcessoAsyncTask extends AsyncTask<DtoProcesso, Void, Void> {
         private ProcessoDao processoDao;
 
         private UpdateProcessoAsyncTask(ProcessoDao noteDao) {
@@ -64,13 +64,13 @@ public class ProcessosRepository {
         }
 
         @Override
-        protected Void doInBackground(Processo... processos) {
+        protected Void doInBackground(DtoProcesso... processos) {
             processoDao.update(processos[0]);
             return null;
         }
     }
 
-    private static class DeleteProcessoAsyncTask extends AsyncTask<Processo, Void, Void> {
+    private static class DeleteProcessoAsyncTask extends AsyncTask<DtoProcesso, Void, Void> {
         private ProcessoDao processoDao1;
 
         private DeleteProcessoAsyncTask(ProcessoDao processoDao) {
@@ -78,7 +78,7 @@ public class ProcessosRepository {
         }
 
         @Override
-        protected Void doInBackground(Processo... processos) {
+        protected Void doInBackground(DtoProcesso... processos) {
             processoDao1.delete(processos[0]);
             return null;
         }
