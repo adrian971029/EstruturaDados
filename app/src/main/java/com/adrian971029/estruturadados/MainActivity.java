@@ -30,6 +30,14 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
+    public static final String DATA_NOME_PROCESSO        = "nomeProcesso";
+    public static final String DATA_NUM_ENTRADAS         = "numEntradas";
+    public static final String DATA_TEMPO_TOTAL_EXEC     = "tempoTotalExec";
+    public static final String DATA_TEMPO_EXEC_PROCESSO  = "tempoExecProcesso";
+    public static final String DATA_TEMPO_TOTAL_ESPERA   = "tempoTotalEspera";
+    public static final String DATA_TEMPO_TOTAL_RESPOSTA = "tempoTotalResposta";
+    public static final String DATA_ARVORE_UTILIZADA     = "arvoreUtilizada";
+
     private ProcessoViewModel processoViewModel;
 
     @Override
@@ -73,7 +81,15 @@ public class MainActivity extends BaseActivity {
         adapter.setOnItemClickListener(new ProcessoAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DtoProcesso processo) {
-
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra(DATA_NOME_PROCESSO, processo.getNomeProcesso());
+                intent.putExtra(DATA_NUM_ENTRADAS, processo.getNumTotalEntradas());
+                intent.putExtra(DATA_TEMPO_TOTAL_EXEC, processo.getTempoTotalExecucao());
+                intent.putExtra(DATA_TEMPO_EXEC_PROCESSO, processo.getTempoExecucaoProcesso());
+                intent.putExtra(DATA_TEMPO_TOTAL_ESPERA, processo.getTempoTotalEspera());
+                intent.putExtra(DATA_TEMPO_TOTAL_RESPOSTA, processo.getTempoTotalResposta());
+                intent.putExtra(DATA_ARVORE_UTILIZADA, processo.isRedBlackTree());
+                startActivity(intent);
             }
         });
 
