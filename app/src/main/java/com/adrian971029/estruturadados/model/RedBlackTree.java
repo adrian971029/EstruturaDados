@@ -91,9 +91,9 @@ public class RedBlackTree {
     private void equilibrar(No no) {
         while (no.pai.cor == RED) {
             No uncle = null;
-            if (no.pai == no.pai.esquerda) {
+            if (no.pai == no.pai.pai.esquerda) {
                 uncle = no.pai.pai.direita;
-                if (uncle != null && uncle.cor == RED) {
+                if (uncle != nulo && uncle.cor == RED) {
                     no.pai.cor = BLACK;
                     uncle.cor = BLACK;
                     no.pai.pai.cor = RED;
@@ -109,7 +109,7 @@ public class RedBlackTree {
                 girarDireita(no.pai.pai);
             } else {
                 uncle = no.pai.pai.esquerda;
-                if (uncle != null && uncle.cor == RED) {
+                if (uncle != nulo && uncle.cor == RED) {
                     no.pai.cor = BLACK;
                     uncle.cor = BLACK;
                     no.pai.pai.cor = RED;
@@ -124,11 +124,12 @@ public class RedBlackTree {
                 no.pai.pai.cor = RED;
                 girarEsquerda(no.pai.pai);
             }
-        }raiz.cor = BLACK;
+        }
+        raiz.cor = BLACK;
     }
 
     void girarDireita(No no) {
-        if (no.pai != null) {
+        if (no.pai != nulo) {
             if (no == no.pai.esquerda) {
                 no.pai.esquerda = no.esquerda;
             } else {
@@ -136,7 +137,7 @@ public class RedBlackTree {
             }
             no.esquerda.pai = no.pai;
             no.pai = no.esquerda;
-            if (no.esquerda.direita != null) {
+            if (no.esquerda.direita != nulo) {
                 no.esquerda.direita.pai = no;
             }
             no.esquerda = no.esquerda.direita;
@@ -147,13 +148,13 @@ public class RedBlackTree {
             esquerda.direita.pai = raiz;
             raiz.pai = esquerda;
             esquerda.direita = raiz;
-            esquerda.pai = null;
+            esquerda.pai = nulo;
             raiz = esquerda;
         }
     }
 
     void girarEsquerda(No no) {
-        if (no.pai != null) {
+        if (no.pai != nulo) {
             if (no == no.pai.esquerda) {
                 no.pai.esquerda = no.direita;
             } else {
@@ -161,7 +162,7 @@ public class RedBlackTree {
             }
             no.direita.pai = no.pai;
             no.pai = no.direita;
-            if (no.direita.esquerda != null) {
+            if (no.direita.esquerda != nulo) {
                 no.direita.esquerda.pai = no;
             }
             no.direita = no.direita.esquerda;
@@ -172,7 +173,7 @@ public class RedBlackTree {
             direita.esquerda.pai = raiz;
             raiz.pai = direita;
             direita.esquerda = raiz;
-            direita.pai = null;
+            direita.pai = nulo;
             raiz = direita;
         }
     }
@@ -262,28 +263,28 @@ public class RedBlackTree {
                     noA = raiz;
                 }
             }else{
-                No noC = noA.pai.esquerda;
-                if(noC.cor == RED){
-                    noC.cor = BLACK;
+                No noB = noA.pai.esquerda;
+                if(noB.cor == RED){
+                    noB.cor = BLACK;
                     noA.pai.cor = RED;
                     girarDireita(noA.pai);
-                    noC = noA.pai.esquerda;
+                    noB = noA.pai.esquerda;
                 }
-                if(noC.direita.cor == BLACK && noC.esquerda.cor == BLACK){
-                    noC.cor = RED;
+                if(noB.direita.cor == BLACK && noB.esquerda.cor == BLACK){
+                    noB.cor = RED;
                     noA = noA.pai;
                     continue;
                 }
-                else if(noC.esquerda.cor == BLACK){
-                    noC.direita.cor = BLACK;
-                    noC.cor = RED;
-                    girarEsquerda(noC);
-                    noC = noA.pai.esquerda;
+                else if(noB.esquerda.cor == BLACK){
+                    noB.direita.cor = BLACK;
+                    noB.cor = RED;
+                    girarEsquerda(noB);
+                    noB = noA.pai.esquerda;
                 }
-                if(noC.esquerda.cor == RED){
-                    noC.cor = noA.pai.cor;
+                if(noB.esquerda.cor == RED){
+                    noB.cor = noA.pai.cor;
                     noA.pai.cor = BLACK;
-                    noC.esquerda.cor = BLACK;
+                    noB.esquerda.cor = BLACK;
                     girarDireita(noA.pai);
                     noA = raiz;
                 }
@@ -293,7 +294,7 @@ public class RedBlackTree {
     }
 
     No treeMinimum(No raizSubArvore){
-        while(raizSubArvore.esquerda!= nulo){
+        while(raizSubArvore.esquerda != nulo){
             raizSubArvore = raizSubArvore.esquerda;
         }
         return raizSubArvore;

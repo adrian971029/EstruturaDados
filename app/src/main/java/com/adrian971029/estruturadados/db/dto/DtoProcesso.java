@@ -14,14 +14,16 @@ public class DtoProcesso {
     private double tempoExecucaoProcesso;
     private double tempoTotalEspera;
     private double tempoTotalResposta;
+    private boolean isRedBlackTree;
 
-    public DtoProcesso(String nomeProcesso, int numTotalEntradas, double tempoTotalExecucao, double tempoExecucaoProcesso, double tempoTotalEspera, double tempoTotalResposta) {
+    public DtoProcesso(String nomeProcesso, int numTotalEntradas, double tempoTotalExecucao, double tempoExecucaoProcesso, double tempoTotalEspera, double tempoTotalResposta, boolean isRedBlackTree) {
         this.nomeProcesso = nomeProcesso;
         this.numTotalEntradas = numTotalEntradas;
         this.tempoTotalExecucao = tempoTotalExecucao;
         this.tempoExecucaoProcesso = tempoExecucaoProcesso;
         this.tempoTotalEspera = tempoTotalEspera;
         this.tempoTotalResposta = tempoTotalResposta;
+        this.isRedBlackTree = isRedBlackTree;
     }
 
     public int getId() {
@@ -78,5 +80,13 @@ public class DtoProcesso {
 
     public void setTempoTotalResposta(double tempoTotalResposta) {
         this.tempoTotalResposta = tempoTotalResposta;
+    }
+
+    public boolean isRedBlackTree() {
+        return isRedBlackTree;
+    }
+
+    public void setRedBlackTree(boolean redBlackTree) {
+        isRedBlackTree = redBlackTree;
     }
 }
