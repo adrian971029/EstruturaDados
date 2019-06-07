@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.adrian971029.estruturadados.R;
 import com.adrian971029.estruturadados.db.dto.DtoProcesso;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ProcessoAdapter extends ListAdapter<DtoProcesso, ProcessoAdapter.ProcessoHolder> {
@@ -57,8 +58,11 @@ public class ProcessoAdapter extends ListAdapter<DtoProcesso, ProcessoAdapter.Pr
     }
 
     class ProcessoHolder extends RecyclerView.ViewHolder {
-        private TextView tvNomeProcesso;
-        private TextView tvIdProcesso;
+
+        @BindView(R.id.tvNomeProcesso)
+        TextView tvNomeProcesso;
+        @BindView(R.id.tvIdProcesso)
+        TextView tvIdProcesso;
 
         public ProcessoHolder(@NonNull View itemView) {
             super(itemView);

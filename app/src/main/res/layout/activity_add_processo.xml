@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".AddProcessoActivity">
+    tools:context=".AddProcessoActivity"
+    android:background="@color/colorPrimaryLight">
 
     <EditText
         android:id="@+id/edtNomeProcesso"
@@ -87,6 +88,8 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
             android:id="@+id/btnCancelar"
             android:layout_marginEnd="16dp"
             android:gravity="center"
@@ -96,6 +99,8 @@
             android:text="@string/lbl_cancelar"/>
 
         <Button
+            android:background="@color/colorAccent"
+            android:textColor="@color/white"
             android:id="@+id/btnCriar"
             android:layout_marginStart="16dp"
             android:gravity="center"
