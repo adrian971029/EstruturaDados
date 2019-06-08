@@ -57,7 +57,6 @@ public abstract class EstruturaDadosDatabase extends RoomDatabase {
         private double tempoExecucaoProcesso;
         private double tempoTotalEspera;
         private double tempoTotalResposta;
-        private boolean isRedBlackTree;
 
         public PopulateDbAsyncTask(EstruturaDadosDatabase db) {
             processoDao = db.processoDao();
@@ -71,21 +70,9 @@ public abstract class EstruturaDadosDatabase extends RoomDatabase {
             agendador = new Agendador();
 
             for (int i = 0; i < 25; i++) {
-                processArrayList.add(new Processo(redBlackTree, 1, 150, 300));
                 processArrayList.add(new Processo(heap, 2, 150, 300));
+                processArrayList.add(new Processo(redBlackTree, 1, 150, 300));
             }
-
-            dadosASalvar = agendador.agendadorRedBlackTree(redBlackTree, 3500, 25);
-
-            nomeProcesso = "Red Black Tree Comparacao";
-            tempoTotalExecucao = dadosASalvar[1];
-            tempoExecucaoProcesso = dadosASalvar[2];
-            tempoTotalEspera = dadosASalvar[3];
-            tempoTotalResposta = dadosASalvar[4];
-
-            processoDao.insert(new DtoProcesso(nomeProcesso, 25,
-                    tempoTotalExecucao, tempoExecucaoProcesso, tempoTotalEspera,
-                    tempoTotalResposta, true));
 
             dadosASalvar = agendador.agendadorHeap(heap, 3500, 25);
 
@@ -98,6 +85,22 @@ public abstract class EstruturaDadosDatabase extends RoomDatabase {
             processoDao.insert(new DtoProcesso(nomeProcesso, 25,
                     tempoTotalExecucao, tempoExecucaoProcesso, tempoTotalEspera,
                     tempoTotalResposta, false));
+
+            dadosASalvar = null;
+
+            dadosASalvar = new double[5];
+
+            dadosASalvar = agendador.agendadorRedBlackTree(redBlackTree, 3500, 25);
+
+            nomeProcesso = "Red Black Tree Comparacao";
+            tempoTotalExecucao = dadosASalvar[1];
+            tempoExecucaoProcesso = dadosASalvar[2];
+            tempoTotalEspera = dadosASalvar[3];
+            tempoTotalResposta = dadosASalvar[4];
+
+            processoDao.insert(new DtoProcesso(nomeProcesso, 25,
+                    tempoTotalExecucao, tempoExecucaoProcesso, tempoTotalEspera,
+                    tempoTotalResposta, true));
 
             return null;
         }
