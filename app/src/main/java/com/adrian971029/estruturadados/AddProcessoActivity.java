@@ -134,11 +134,11 @@ public class AddProcessoActivity extends BaseActivity {
     private int tamanhoProcesso() {
         int tamanho = 0;
         if (rbPequeno.isChecked()) {
-            tamanho = (int)(Math.random() * 1000 + 1);
+            tamanho = (int)(Math.random() * 10 + 1);
         } else if (rbMedio.isChecked()) {
-            tamanho = (int)(Math.random() * 10000 + 1001);
+            tamanho = (int)(Math.random() * 100 + 1001);
         } else if (rbGrande.isChecked()) {
-            tamanho = (int)(Math.random() * 100000 + 10001);
+            tamanho = (int)(Math.random() * 1000 + 10001);
         }
         return tamanho;
     }
